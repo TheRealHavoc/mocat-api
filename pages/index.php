@@ -1,4 +1,5 @@
 <?php
+
     $data = (object) array();
 
     $data->file = basename(__FILE__);

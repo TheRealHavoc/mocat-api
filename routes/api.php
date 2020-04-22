@@ -5,6 +5,7 @@
      * Register your routes here
      */
     $router->url('', 'index');
+    $router->url('search', 'search');
 
     /**
      * Authorisation

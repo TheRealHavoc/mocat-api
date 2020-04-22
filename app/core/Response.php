@@ -1,4 +1,5 @@
 <?php
+
     class Response
     {
         /**
@@ -12,6 +13,21 @@
             $data = ["data" => $data];
 
             echo json_encode($data);
+
+            die;
+        }
+
+        /**
+         * @param $data
+         * @param int $http_response_code
+         */
+        public static function json($data, $http_response_code = 200)
+        {
+            self::headers($http_response_code);
+
+            $data = "{\"data\":".$data."}";
+
+            echo $data;
 
             die;
         }
