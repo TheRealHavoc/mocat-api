@@ -1,1 +1,41 @@
-# mocat-api
+# Movie Catalog API
+
+## Database
+<ul>
+    <li>users
+        <ul>
+            <li>id</li>
+            <li>username</li>
+            <li>password</li>
+            <li>token</li>
+        </ul>
+    </li>
+    <li>media
+        <ul>
+            <li>title</li>
+            <li>year</li>
+            <li>rated</li>
+            <li>released</li>
+            <li>runtime</li>
+            <li>genre</li>
+            <li>director</li>
+            <li>writer</li>
+            <li>actors</li>
+            <li>plot</li>
+            <li>language</li>
+            <li>country</li>
+            <li>awards</li>
+            <li>poster</li>
+            <li>ratings</li>
+            <li>metascore</li>
+            <li>imdbrating</li>
+            <li>imdbvotes</li>
+            <li>imdbid</li>
+            <li>type</li>
+            <li>dvd</li>
+            <li>boxoffice</li>
+            <li>production</li>
+            <li>website</li>
+        </ul>
+    </li>
+</ul>
