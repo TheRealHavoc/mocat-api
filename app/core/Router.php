@@ -19,7 +19,7 @@
             }
 
             if($url[0] === $route) {
-                $this->page = $page;
+                $this->page = 'pages/'.$page;
             }
         }
     }

@@ -1,7 +1,7 @@
 <?php
     class Database
     {
-        private $conn;
+        public $conn;
 
         public function __construct()
         {
@@ -18,5 +18,32 @@
             }
 
             return $this->conn;
+        }
+
+        public function getUserByUsername($username)
+        {
+            $query = "SELECT `id`, `username`, `password` FROM `users` WHERE `username` = :username";
+
+            $sql = $this->conn->prepare($query);
+            $sql->bindParam(':username', $username);
+
+            if(!$sql->execute())
+                Response::error("Something went wrong", 500);
+
+            return $sql->fetch();
+        }
+
+        public function updateToken($token, $id)
+        {
+            $query = "UPDATE `users` SET `token` = :token WHERE `users`.`id` = :id";
+
+            $sql = $this->conn->prepare($query);
+            $sql->bindParam(':token', $token);
+            $sql->bindParam(':id', $id);
+
+            if(!$sql->execute())
+                Response::error("Something went wrong", 500);
+
+            return;
         }
     }

@@ -6,15 +6,21 @@
     require_once __DIR__.'/config/config.php';
 
     /**
-     * Register helpers
+     * Handles response
      */
-    require_once __DIR__.'/helpers/Response.php';
+    require_once __DIR__.'/core/Response.php';
 
     /**
      * Database
      */
     require_once __DIR__.'/core/Database.php';
     $db = new Database();
+
+    /**
+     * Register helpers
+     */
+    require_once __DIR__.'/helpers/Auth.php';
+    require_once __DIR__.'/helpers/Token.php';
 
     /**
      * Routing

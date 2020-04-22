@@ -1,12 +1,18 @@
 <?php
     $router = new Router();
+
     /**
      * Register your routes here
      */
+    $router->url('', 'index.php');
 
-    $router->url('', 'pages/index.php');
+    /**
+     * Authorisation
+     */
+    $router->url('signin', 'auth/signin.php');
 
     /**
      * Development
      */
-    $router->url('createuser', 'pages/dev/createuser.php');
+    $router->url('createuser', 'dev/createuser.php');
+    $router->url('auth', 'dev/auth.php');

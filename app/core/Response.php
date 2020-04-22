@@ -5,7 +5,7 @@
          * @param $data
          * @param int $http_response_code
          */
-        public static function success($data, $http_response_code = 200)
+        public static function data($data, $http_response_code = 200)
         {
             self::headers($http_response_code);
 
@@ -16,6 +16,25 @@
             die;
         }
 
+        /**
+         * @param $data
+         * @param int $http_response_code
+         */
+        public static function success($message, $http_response_code)
+        {
+            self::headers($http_response_code);
+
+            $message = ["message" => ["code" => $http_response_code, "messages" => $message]];
+
+            echo json_encode($message);
+
+            die;
+        }
+
+        /**
+         * @param $error
+         * @param $http_response_code
+         */
         public static function error($error, $http_response_code)
         {
             self::headers($http_response_code);
@@ -27,6 +46,9 @@
             die;
         }
 
+        /**
+         * @param $http_response_code
+         */
         private static function headers($http_response_code)
         {
             header("Access-Control-Allow-Origin: *");

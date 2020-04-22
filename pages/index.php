@@ -4,7 +4,7 @@
     $data->file = basename(__FILE__);
 
     if($data) {
-        Response::success(
+        Response::data(
             $data
         );
     } else {
