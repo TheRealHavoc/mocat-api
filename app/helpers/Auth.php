@@ -15,7 +15,7 @@
                 Response::error("Something went wrong", 500);
 
             if(!$res = $sql->fetch())
-                Response::error("Something went wrong with the authentication", 400);
+                Response::error("You are unauthorized", 401);
 
             return true;
         }

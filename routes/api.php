@@ -6,7 +6,6 @@
      */
     $router->url('', 'index');
     $router->url('search', 'search');
-    $router->url('save', 'save');
 
     /**
      * Authorisation
@@ -18,3 +17,4 @@
      * Development
      */
     $router->url('createuser', 'dev/createuser');
+    $router->url('savetodatabase', 'dev/savetodatabase');

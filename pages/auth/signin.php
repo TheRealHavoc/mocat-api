@@ -23,7 +23,6 @@
         $db->updateToken($token, $res['id']);
 
         Response::data([
-            'username' => $params->username,
             'token' => $token
         ]);
     }

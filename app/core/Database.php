@@ -3,6 +3,9 @@
     {
         public $conn;
 
+        /**
+         * Database constructor.
+         */
         public function __construct()
         {
             try {
@@ -20,6 +23,10 @@
             return $this->conn;
         }
 
+        /**
+         * @param $username
+         * @return mixed
+         */
         public function getUserByUsername($username)
         {
             $query = "SELECT `id`, `username`, `password` FROM `users` WHERE `username` = :username";
@@ -33,6 +40,10 @@
             return $sql->fetch();
         }
 
+        /**
+         * @param $token
+         * @param $id
+         */
         public function updateToken($token, $id)
         {
             $query = "UPDATE `users` SET `token` = :token WHERE `users`.`id` = :id";
@@ -47,6 +58,9 @@
             return;
         }
 
+        /**
+         * @param $data
+         */
         public function saveMedia($data)
         {
             $data = json_decode($data);
@@ -118,8 +132,15 @@
                 $binds[] = $value;
             }
 
-            if(!$sql->execute($binds))
-                Response::error("Something went wrong", 500);
+            try {
+                $sql->execute($binds);
+            } catch (PDOException $e) {
+                if ($e->errorInfo[1] == 1062) {
+                    Response::error("Media already exists in the database", 500);
+                } else {
+                    Response::error("Something went wrong", 500);
+                }
+            }
 
         }
     }
