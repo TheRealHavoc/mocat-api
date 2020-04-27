@@ -23,3 +23,5 @@
             $results
         );
     }
+
+    Response::error("No search parameters entered", 400);

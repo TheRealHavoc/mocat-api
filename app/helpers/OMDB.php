@@ -15,6 +15,10 @@
 
             $url = "{$host}?apikey={$apikey}&s={$value}&page={$page}";
 
+            if (!$json = file_get_contents(($url))) {
+                Response::error("Could not connect to the OMDB API", 500);
+            }
+
             return file_get_contents($url);
         }
 
@@ -25,6 +29,10 @@
             $value = rawurlencode($value);
 
             $url = "{$host}?apikey={$apikey}&i={$value}";
+
+            if (!$json = file_get_contents(($url))) {
+                Response::error("Could not connect to the OMDB API", 500);
+            }
 
             return file_get_contents($url);
         }
