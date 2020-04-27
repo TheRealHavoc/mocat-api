@@ -22,6 +22,10 @@
             return file_get_contents($url);
         }
 
+        /**
+         * @param $value
+         * @return false|string
+         */
         public static function searchByID($value)
         {
             $host = OMDB_HOST;

@@ -6,6 +6,7 @@
      */
     $router->url('', 'index');
     $router->url('search', 'search');
+    $router->url('save', 'save');
 
     /**
      * Authorisation

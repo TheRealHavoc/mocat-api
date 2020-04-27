@@ -46,4 +46,80 @@
 
             return;
         }
+
+        public function saveMedia($data)
+        {
+            $data = json_decode($data);
+            unset($data->Response);
+
+            $query = "
+                INSERT INTO `media` 
+                    (
+                        `title`, 
+                        `year`, 
+                        `rated`, 
+                        `released`, 
+                        `runtime`, 
+                        `genre`, 
+                        `director`, 
+                        `writer`, 
+                        `actors`, 
+                        `plot`, 
+                        `language`, 
+                        `country`, 
+                        `awards`, 
+                        `poster`, 
+                        `ratings`, 
+                        `metascore`, 
+                        `imdbrating`, 
+                        `imdbvotes`, 
+                        `imdbid`, 
+                        `type`, 
+                        `dvd`, 
+                        `boxoffice`, 
+                        `production`, 
+                        `website`
+                    ) 
+                VALUES 
+                    (
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?
+                    );
+            ";
+
+            $sql = $this->conn->prepare($query);
+
+            $data->Ratings = Converter::OMDBRatingsToJSON($data->Ratings);
+
+            $binds = [];
+            foreach($data as $key => $value) {
+                $binds[] = $value;
+            }
+
+            if(!$sql->execute($binds))
+                Response::error("Something went wrong", 500);
+
+        }
     }

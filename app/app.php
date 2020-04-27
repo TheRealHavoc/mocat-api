@@ -20,6 +20,7 @@
      * Register helpers
      */
     require_once __DIR__.'/helpers/Auth.php';
+    require_once __DIR__.'/helpers/Converter.php';
     require_once __DIR__.'/helpers/OMDB.php';
     require_once __DIR__.'/helpers/Token.php';
 
