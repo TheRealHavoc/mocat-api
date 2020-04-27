@@ -1,5 +1,5 @@
 <?php
-    Auth::authenticateByToken($db);
+    $user = Auth::authenticateByToken($db);
 
     if(isset($_GET['id'])) {
         $params = (object) array();

@@ -29,10 +29,44 @@
          */
         public function getUserByUsername($username)
         {
-            $query = "SELECT `id`, `username`, `password` FROM `users` WHERE `username` = :username";
+            $query = "SELECT * FROM `users` WHERE `username` = :username";
 
             $sql = $this->conn->prepare($query);
             $sql->bindParam(':username', $username);
+
+            if(!$sql->execute())
+                Response::error("Something went wrong", 500);
+
+            return $sql->fetch();
+        }
+
+        /**
+         * @param $id
+         * @return mixed
+         */
+        public function getUserByID($id)
+        {
+            $query = "SELECT * FROM `users` WHERE `id` = :id";
+
+            $sql = $this->conn->prepare($query);
+            $sql->bindParam(':id', $id);
+
+            if(!$sql->execute())
+                Response::error("Something went wrong", 500);
+
+            return $sql->fetch();
+        }
+
+        /**
+         * @param $id
+         * @return mixed
+         */
+        public function getMediaByID($id)
+        {
+            $query = "SELECT * FROM `media` WHERE `omdbid` = :id";
+
+            $sql = $this->conn->prepare($query);
+            $sql->bindParam(':id', $id);
 
             if(!$sql->execute())
                 Response::error("Something went wrong", 500);
@@ -142,5 +176,32 @@
                 }
             }
 
+        }
+
+        public function save($mediaID, $userID)
+        {
+            $query = "
+                INSERT INTO `users_media_XREF`
+                    (
+                        `userid`,
+                        `mediaid`,
+                        `saved`,
+                        `watched`,
+                        `favorited`
+                    )
+                VALUES
+                    (
+                        ?,
+                        ?,
+                        ?,
+                        ?,
+                        ?
+                    )
+            ";
+
+            $sql = $this->conn->prepare($query);
+
+            if(!$sql->execute([$userID, $mediaID, 1, 0, 0]))
+                Response::error("Something went wrong", 500);
         }
     }

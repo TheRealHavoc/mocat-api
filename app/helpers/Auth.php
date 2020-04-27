@@ -8,7 +8,7 @@
 
             $request->headers = getallheaders();
 
-            $sql = $db->conn->prepare('SELECT `token` FROM `users` WHERE `token` = :token');
+            $sql = $db->conn->prepare('SELECT `id`, `username`, `token` FROM `users` WHERE `token` = :token');
             $sql->bindParam(':token', $request->headers['token']);
 
             if(!$sql->execute())
@@ -17,6 +17,6 @@
             if(!$res = $sql->fetch())
                 Response::error("You are unauthorized", 401);
 
-            return true;
+            return $res;
         }
     }
